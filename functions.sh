@@ -25,3 +25,8 @@ function d2e() {
         date -j -f "%a %b %d %T %Z %Y" "`$*`" "+%s"
     fi
 }
+
+# https://www.gnu.org/software/diffutils/manual/html_node/ed-Scripts.html
+function diff_apply() {
+    (cat $1 && echo w) | ed - $2
+}
