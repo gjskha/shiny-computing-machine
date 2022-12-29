@@ -24,12 +24,22 @@ function archive_files() {
 
 # This is BSD stat
 function get_mtime() {
-    stat -s $1 | awk '{print $10}' | awk -F= '{print $2}'
+    if [[ $# == 1 ]]; then
+        stat -s $1 | awk '{print $10}' | awk -F= '{print $2}'
+    else
+        echo "usage: get_mtime [filename]"
+	return 1
+    fi
 }
 
 # This is BSD stat
 function get_ctime() {
-    stat -s $1 | awk '{print $11}' | awk -F= '{print $2}'
+    if [[ $# == 1 ]]; then
+        stat -s $1 | awk '{print $11}' | awk -F= '{print $2}'
+    else
+        echo "usage: get_ctime [filename]"
+	return 1
+    fi
 }
 
 # Takes a doublequoted string, e.g. "Dec 27 12:43:18 2022"
